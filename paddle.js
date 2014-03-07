@@ -42,6 +42,8 @@ function Bot(){
     Paddle.call(this);
     
     this.x = game.width - 20 - this.width;
+    
+    this.yVelocity = 5;
 }
 
 Bot.prototype = Object.create(Paddle.prototype);
@@ -51,5 +53,16 @@ Bot.prototype.constructor = Bot;
 Bot.prototype.update = function(){
     Paddle.prototype.update.apply(this, arguments);
     
+    if (game.ball.y < this.y && this.yVelocity > 0)
+        this.yVelocity *= -1;
+    else
+        {
+            if (game.ball.y > this.y && this.yVelocity < 0)
+                this.yVelocity *= -1;
+        }
+    
+
+    this.y = Math.min(this.y, game.height - this.height);
+    this.y = Math.max(this.y, 0);    
     
 }

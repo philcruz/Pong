@@ -4,11 +4,13 @@ function Ball(){
     this.width = 20;
     this.height = 20;
     
-    this.x = (game.width/2);
+    this.x = game.width/2;
     this.y = game.height/2;
     
-    this.xVelocity = 0;
-    this.yVelocity = -5;
+    this.xVelocity = 1;
+    var min = 5;
+    var max = 10;
+    this.yVelocity = Math.floor(Math.random()*(max-min+1)+min);;
 }
 
 
@@ -22,7 +24,22 @@ Ball.prototype.update = function(){
     
     if (this.y >= game.height - this.height || this.y <= 0)
         this.yVelocity *= -1; //reverse direction
-        
     
+    if (this.x > game.width){
+        this.xVelocity *= -1
+        this.reset();
+    }
+    else {
+        if (this.x < 0 - this.width){
+            this.xVelocity *= -1;
+            this.reset();
+        }
+    }
         
+}
+
+Ball.prototype.reset = function(){
+    this.x = game.width/2;
+    this.y = game.height/2;
+    
 }
