@@ -13,6 +13,13 @@ function Paddle(){
 Paddle.prototype = Object.create(Entity.prototype);
 Paddle.prototype.constructor = Paddle
 
+Paddle.prototype.update = function(){
+     Entity.prototype.update.apply(this,arguments); // like call to super() in Java
+     
+    if (this.intersect(game.ball))
+        game.ball.xVelocity *= -1;
+}
+
 
 //Player inherits from Paddle
 function Player(){
@@ -43,7 +50,7 @@ function Bot(){
     
     this.x = game.width - 20 - this.width;
     
-    this.yVelocity = 5;
+    this.yVelocity = 4;
 }
 
 Bot.prototype = Object.create(Paddle.prototype);

@@ -4,13 +4,12 @@ function Ball(){
     this.width = 20;
     this.height = 20;
     
-    this.x = game.width/2;
-    this.y = game.height/2;
+    this.reset();
+    //this.x = game.width/2;
+    //this.y = game.height/2;
     
-    this.xVelocity = 1;
-    var min = 5;
-    var max = 10;
-    this.yVelocity = Math.floor(Math.random()*(max-min+1)+min);;
+    //this.xVelocity = Math.floor(Math.random()*(max-min+1)+min);
+    //this.yVelocity = Math.floor(Math.random()*(max-min+1)+min);
 }
 
 
@@ -41,5 +40,12 @@ Ball.prototype.update = function(){
 Ball.prototype.reset = function(){
     this.x = game.width/2;
     this.y = game.height/2;
+    
+    var xmin = 3
+    var ymin = 1;
+    var max = 10;
+    
+    this.xVelocity = Math.floor(Math.random()*(max-xmin+1)+xmin);;
+    this.yVelocity = Math.floor(Math.random()*(max-ymin+1)+ymin);;
     
 }
